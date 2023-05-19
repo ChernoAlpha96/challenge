@@ -18,12 +18,14 @@ main    {
     margin-left: 80px;
 }
 
-.text-area  {
+.text-area {
     border: none;
     color: #0A3871;
     margin-top: 90px;
     text-transform: lowercase;
+    resize: none;
 }
+
 
 ::placeholder{  color: #0A3871;}
 .text-area:focus    {
