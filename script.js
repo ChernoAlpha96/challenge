@@ -1,57 +1,82 @@
-const textArea = document.querySelector (".text-area");
-const mensaje = document.querySelector(".mensaje");
+var bEncriptar = document.querySelector("#btn-Encriptar");
+var bDesencriptar = document.querySelector("#btn-Desencriptar");
+var imagen = document.querySelector(".imagenseccion2");
+var h4 = document.querySelector(".mensajenoEncontrado");
+var parrafo = document.querySelector(".parrafoingresetexto");
+var resultado = document.querySelector(".texto-Resultado");
+var bCopiar = document.querySelector("#btn-Copiar");
 
+bEncriptar.onclick = encriptar;
+bDesencriptar.onclick = desencriptar;
+bCopiar.onclick = copiar; 
 
-//La letra "e" es convertida para "enter"
-//La letra "i" es convertida para "imes"
-//La letra "a" es convertida para "ai"
-//La letra "o" es convertida para "ober"
-//La letra "u" es convertida para "ufat"
-
-
-function btnEncriptar() {
-    const textoEncriptado = encriptar(textArea.value)
-    mensaje.value = textoEncriptado
+function encriptar(){
+    ocultarSeccion();
+    var area = recuperarTexto();
+    resultado.textContent = encriptarTexto(area);
 }
 
-function encriptar(stringEncriptada){    
-    let matrizCodigo = [["e", "enter"],["i", "imes"],["a","ai"],["o","ober"],["u","ufat"]];
-    stringEncriptada = stringEncriptada.toLowerCase()
+function desencriptar (){
+    ocultarSeccion();
+    var area = recuperarTexto();
+    resultado.textContent = desencriptarTexto(area);
+}
 
-    for(let i = 0; i < matrizCodigo.length; i++)   {
-        if(stringEncriptada.includes(matrizCodigo[i][0]))    {
-            stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1])
+function recuperarTexto(){
+    var textarea = document.querySelector(".text-area");
+    return textarea.value;
+}
 
+function ocultarSeccion(){
+    imagen.classList.add("ocultar");
+    h4.classList.add("ocultar");
+    parrafo.classList.add("ocultar");
+}
+
+function encriptarTexto(stringEncriptado){
+    let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
+    stringEncriptado = stringEncriptado.toLowerCase();
+
+    for(let i = 0; i < matrizCodigo.length; i++){
+        if(stringEncriptado.includes(matrizCodigo[i][0])){
+            stringEncriptado = stringEncriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
         }
-    }
-    return stringEncriptada
-}
-
-function btnDesencriptar() {
-    const textoEncriptado = desencriptar(textArea.value)
-    mensaje.value = textoEncriptado
-    textArea.value = "";
-}
-
-function desencriptar(stringDesencriptada){    
-    let matrizCodigo = [["e", "enter"],["i", "imes"],["a","ai"],["o","ober"],["u","ufat"]];
-    stringDesencriptada = stringDesencriptada.toLowerCase()
-
-    for(let i = 0; i < matrizCodigo.length; i++)   {
-        if(stringDesencriptada.includes(matrizCodigo[i][1]))    {
-            stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0])
-
         }
+        return stringEncriptado;
+}
+
+function desencriptarTexto(stringDesencriptado){
+    let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
+    stringDesencriptado = stringDesencriptado.toLowerCase();
+
+    for(let i = 0; i < matrizCodigo.length; i++){
+        if(stringDesencriptado.includes(matrizCodigo[i][1])){
+            stringDesencriptado = stringDesencriptado.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0]);
+        }
+        }
+        return stringDesencriptado;
+}
+
+function copiar(){
+    ocultarSeccion();
+    var texto = document.querySelector(".texto-Resultado");
+    texto.select();
+    document.execCommand("copy");
+}
+
+var textarea = document.querySelector(".text-area");
+textarea.addEventListener("input", function () {
+    var textoValido = validarCaracteresEspeciales(this.value);
+    this.value = textoValido;
+});
+
+function validarCaracteresEspeciales(texto) {
+    var regex = /^[a-z\s]+$/;
+
+    if (!regex.test(texto)) {
+        alert("Se encontraron caracteres especiales. Por favor, ingrese solo letras minúsculas y espacios.");
+        return "";
+    } else {
+        return texto;
     }
-    return stringDesencriptada
 }
-
-function copiarAlPortapapeles() {
-    let aCopiar = document.getElementById('aCopiar');
-    aCopiar.select();
-    document.execCommand('copy');
-}
-
-  
-
-
