@@ -6,12 +6,6 @@ var parrafo = document.querySelector(".parrafoingresetexto");
 var resultado = document.querySelector(".texto-Resultado");
 var bCopiar = document.querySelector("#btn-Copiar");
 
-    window.addEventListener('load', function() {
-    var loader = document.querySelector('.loading');
-    setTimeout(function() {
-      loader.style.display = 'none';
-    }, 2000);
-  });
 
 bEncriptar.onclick = encriptar;
 bDesencriptar.onclick = desencriptar;
@@ -82,8 +76,14 @@ function validarCaracteresEspeciales(texto) {
 
     if (!regex.test(texto)) {
         alert("Se encontraron caracteres especiales. Por favor, ingrese solo letras minúsculas y espacios.");
-        return "";
-    } else {
-        return texto;
     }
+    return texto;
 }
+
+
+window.addEventListener('load', function() {
+    var loader = document.querySelector('.loading');
+    setTimeout(function() {
+      loader.style.display = 'none';
+    }, 2000);
+  });
