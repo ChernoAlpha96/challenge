@@ -87,3 +87,19 @@ window.addEventListener('load', function() {
       loader.style.display = 'none';
     }, 2000);
   });
+
+ 
+
+  // Obtener el checkbox y el elemento <body> desde el HTML
+const checkbox = document.getElementById("check");
+const body = document.body;
+
+// Escuchar el evento de cambio del checkbox
+checkbox.addEventListener("change", () => {
+  // Alternar la clase "dark-mode" en <body> según el estado del checkbox
+  if (checkbox.checked) {
+    body.classList.add("dark-mode");
+  } else {
+    body.classList.remove("dark-mode");
+  }
+});
