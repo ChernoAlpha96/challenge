@@ -113,6 +113,7 @@ header{
   align-items: center;
 }
 .logo{
+  padding-bottom: 25px;
   float: left;
   padding-top: 2.5%;
   margin-left: 2.5%;
@@ -263,6 +264,7 @@ section{
   font-size: 100%;
 }
 footer{
+  padding-top: 10px;
   background-color: #a6b1d6;
   height: 20%;
   font-size: 1.5em;
@@ -323,3 +325,5 @@ color: #f5f5f5;
 .dark-mode .rev{
   color: #F2F2F2;
 }
+
+
